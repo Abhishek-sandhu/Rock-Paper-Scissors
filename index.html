@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rock Paper Scissors</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Rock Paper Scissors</h1>
+            <div class="game-info">
+                <span id="current-mode">Classic Mode</span>
+                <div class="menu-buttons">
+                    <button id="menu-btn">Menu</button>
+                    <button id="stats-btn">Stats</button>
+                    <button id="history-btn">History</button>
+                    <button id="settings-btn">Settings</button>
+                </div>
+            </div>
+        </header>
+
+        <div id="menu" class="panel">
+            <h2>Game Setup</h2>
+            <div class="setup-section">
+                <label for="mode-select">Game Mode:</label>
+                <select id="mode-select">
+                    <option value="classic">Classic (RPS)</option>
+                    <option value="extended">Extended (RPSLS)</option>
+                    <option value="best-of-3">Best of 3</option>
+                    <option value="best-of-5">Best of 5</option>
+                    <option value="best-of-7">Best of 7</option>
+                    <option value="time-attack">Time Attack</option>
+                    <option value="survival">Survival</option>
+                </select>
+            </div>
+            <div class="setup-section">
+                <label for="difficulty-select">Difficulty:</label>
+                <select id="difficulty-select">
+                    <option value="easy">Easy</option>
+                    <option value="medium">Medium</option>
+                    <option value="hard">Hard</option>
+                </select>
+            </div>
+            <button id="start-game-btn">Start Game</button>
+        </div>
+
+        <div id="game" class="panel active">
+            <div class="scoreboard">
+                <div class="score">
+                    <span class="label">Player</span>
+                    <span id="player-score">0</span>
+                </div>
+                <div class="round">
+                    <span class="label">Round</span>
+                    <span id="round-number">1</span>
+                </div>
+                <div class="score">
+                    <span class="label">Computer</span>
+                    <span id="computer-score">0</span>
+                </div>
+            </div>
+            <div class="choices" id="choices">
+                <div class="choice" data-choice="rock">
+                    <span class="icon">🪨</span>
+                    <span class="text">Rock</span>
+                </div>
+                <div class="choice" data-choice="paper">
+                    <span class="icon">📄</span>
+                    <span class="text">Paper</span>
+                </div>
+                <div class="choice" data-choice="scissors">
+                    <span class="icon">✂️</span>
+                    <span class="text">Scissors</span>
+                </div>
+            </div>
+            <div class="selected-display" id="selected-display">
+                <span id="selected-text"></span>
+            </div>
+            <div class="timer" id="timer"></div>
+            <div class="countdown" id="countdown"></div>
+            <div class="result" id="result">
+                <div class="hands">
+                    <div class="hand player-hand" id="player-hand">🤜</div>
+                    <div class="hand computer-hand" id="computer-hand">🤛</div>
+                </div>
+                <div class="outcome" id="outcome"></div>
+            </div>
+            <button id="restart-btn">New Game</button>
+        </div>
+
+        <div id="stats" class="panel">
+            <h2>Statistics</h2>
+            <div class="stats-grid">
+                <div>Wins: <span id="total-wins">0</span></div>
+                <div>Losses: <span id="total-losses">0</span></div>
+                <div>Ties: <span id="total-ties">0</span></div>
+                <div>Win Streak: <span id="win-streak">0</span></div>
+                <div>Highest Streak: <span id="highest-streak">0</span></div>
+                <div>Games Played: <span id="games-played">0</span></div>
+            </div>
+        </div>
+
+        <div id="history" class="panel">
+            <h2>Game History</h2>
+            <div id="history-list"></div>
+            <button id="clear-history-btn">Clear History</button>
+        </div>
+
+        <div id="settings" class="panel">
+            <h2>Settings</h2>
+            <div class="setting">
+                <label for="player-name">Player Name:</label>
+                <input type="text" id="player-name" placeholder="Enter name">
+            </div>
+            <div class="setting">
+                <label for="theme-select">Theme:</label>
+                <select id="theme-select">
+                    <option value="dark">Dark</option>
+                    <option value="light">Light</option>
+                </select>
+            </div>
+            <div class="setting">
+                <label for="sound-toggle">Sound:</label>
+                <input type="checkbox" id="sound-toggle" checked>
+            </div>
+            <button id="save-settings-btn">Save Settings</button>
+        </div>
+    </div>
+    <script src="storage.js"></script>
+    <script src="sounds.js"></script>
+    <script src="ui.js"></script>
+    <script src="game.js"></script>
+</body>
+</html>
