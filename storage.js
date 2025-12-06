@@ -42,7 +42,9 @@ const Storage = {
         return this.load('rps-settings', {
             playerName: 'Player',
             theme: 'dark',
-            soundEnabled: true
+            soundEnabled: true,
+            musicEnabled: true,
+            musicVolume: 0.3
         });
     },
 

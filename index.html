@@ -51,28 +51,111 @@
         </div>
 
         <div id="menu" class="panel">
-            <h2>Game Setup</h2>
-            <div class="setup-section">
-                <label for="mode-select">Game Mode:</label>
-                <select id="mode-select">
-                    <option value="classic">Classic (RPS)</option>
-                    <option value="extended">Extended (RPSLS)</option>
-                    <option value="best-of-3">Best of 3</option>
-                    <option value="best-of-5">Best of 5</option>
-                    <option value="best-of-7">Best of 7</option>
-                    <option value="time-attack">Time Attack</option>
-                    <option value="survival">Survival</option>
-                </select>
+            <div class="menu-header">
+                <h2>🎮 Choose Your Challenge</h2>
+                <p class="menu-subtitle">Select your preferred game mode and difficulty level</p>
             </div>
-            <div class="setup-section">
-                <label for="difficulty-select">Difficulty:</label>
-                <select id="difficulty-select">
-                    <option value="easy">Easy</option>
-                    <option value="medium">Medium</option>
-                    <option value="hard">Hard</option>
-                </select>
+
+            <div class="setup-container">
+                <!-- Game Mode Selection -->
+                <div class="setup-card">
+                    <div class="card-header">
+                        <span class="card-icon">🎯</span>
+                        <h3>Game Mode</h3>
+                    </div>
+                    <div class="mode-grid">
+                        <div class="mode-option" data-mode="classic">
+                            <div class="mode-icon">✂️</div>
+                            <div class="mode-info">
+                                <h4>Classic RPS</h4>
+                                <p>Rock, Paper, Scissors - The timeless battle</p>
+                            </div>
+                        </div>
+                        <div class="mode-option" data-mode="extended">
+                            <div class="mode-icon">🦎</div>
+                            <div class="mode-info">
+                                <h4>Extended RPSLS</h4>
+                                <p>Rock, Paper, Scissors, Lizard, Spock - More strategy!</p>
+                            </div>
+                        </div>
+                        <div class="mode-option" data-mode="best-of-3">
+                            <div class="mode-icon">🏆</div>
+                            <div class="mode-info">
+                                <h4>Best of 3</h4>
+                                <p>First to win 2 rounds</p>
+                            </div>
+                        </div>
+                        <div class="mode-option" data-mode="best-of-5">
+                            <div class="mode-icon">⭐</div>
+                            <div class="mode-info">
+                                <h4>Best of 5</h4>
+                                <p>First to win 3 rounds</p>
+                            </div>
+                        </div>
+                        <div class="mode-option" data-mode="best-of-7">
+                            <div class="mode-icon">👑</div>
+                            <div class="mode-info">
+                                <h4>Best of 7</h4>
+                                <p>First to win 4 rounds</p>
+                            </div>
+                        </div>
+                        <div class="mode-option" data-mode="time-attack">
+                            <div class="mode-icon">⏱️</div>
+                            <div class="mode-info">
+                                <h4>Time Attack</h4>
+                                <p>Beat the clock in 10 seconds per round</p>
+                            </div>
+                        </div>
+                        <div class="mode-option" data-mode="survival">
+                            <div class="mode-icon">🔥</div>
+                            <div class="mode-info">
+                                <h4>Survival</h4>
+                                <p>How long can you survive?</p>
+                            </div>
+                        </div>
+                    </div>
+                    <input type="hidden" id="mode-select" value="classic">
+                </div>
+
+                <!-- Difficulty Selection -->
+                <div class="setup-card">
+                    <div class="card-header">
+                        <span class="card-icon">🧠</span>
+                        <h3>AI Difficulty</h3>
+                    </div>
+                    <div class="difficulty-grid">
+                        <div class="difficulty-option" data-difficulty="easy">
+                            <div class="difficulty-icon">😊</div>
+                            <div class="difficulty-info">
+                                <h4>Easy</h4>
+                                <p>Perfect for beginners</p>
+                            </div>
+                        </div>
+                        <div class="difficulty-option" data-difficulty="medium">
+                            <div class="difficulty-icon">🤔</div>
+                            <div class="difficulty-info">
+                                <h4>Medium</h4>
+                                <p>A fair challenge</p>
+                            </div>
+                        </div>
+                        <div class="difficulty-option" data-difficulty="hard">
+                            <div class="difficulty-icon">😈</div>
+                            <div class="difficulty-info">
+                                <h4>Hard</h4>
+                                <p>Master level AI</p>
+                            </div>
+                        </div>
+                    </div>
+                    <input type="hidden" id="difficulty-select" value="easy">
+                </div>
             </div>
-            <button id="start-game-btn">Start Game</button>
+
+            <div class="start-game-section">
+                <button id="start-game-btn" class="start-game-button">
+                    <span class="button-icon">🚀</span>
+                    <span class="button-text">Start Game</span>
+                </button>
+            </div>
         </div>
 
         <div id="game" class="panel">
@@ -153,6 +236,14 @@
             <div class="setting">
                 <label for="sound-toggle">Sound:</label>
                 <input type="checkbox" id="sound-toggle" checked>
+            </div>
+            <div class="setting">
+                <label for="music-toggle">Background Music:</label>
+                <input type="checkbox" id="music-toggle" checked>
+            </div>
+            <div class="setting">
+                <label for="music-volume">Music Volume:</label>
+                <input type="range" id="music-volume" min="0" max="1" step="0.1" value="0.3">
             </div>
             <button id="save-settings-btn">Save Settings</button>
         </div>

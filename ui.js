@@ -16,12 +16,41 @@ const UI = {
         document.getElementById('settings-btn').addEventListener('click', () => this.showPanel('settings'));
 
         // Let's Start button
-        document.getElementById('lets-start-btn').addEventListener('click', () => this.showPanel('menu'));
+        document.getElementById('lets-start-btn').addEventListener('click', () => {
+            this.showPanel('menu');
+            Sounds.startMusic();
+        });
 
         // Start game
         document.getElementById('start-game-btn').addEventListener('click', () => {
             Game.init();
             this.showPanel('game');
+        });
+
+        // Mode selection
+        document.querySelectorAll('.mode-option').forEach(option => {
+            option.addEventListener('click', () => {
+                // Remove selected class from all options
+                document.querySelectorAll('.mode-option').forEach(opt => opt.classList.remove('selected'));
+                // Add selected class to clicked option
+                option.classList.add('selected');
+                // Update hidden input
+                document.getElementById('mode-select').value = option.dataset.mode;
+                Sounds.click();
+            });
+        });
+
+        // Difficulty selection
+        document.querySelectorAll('.difficulty-option').forEach(option => {
+            option.addEventListener('click', () => {
+                // Remove selected class from all options
+                document.querySelectorAll('.difficulty-option').forEach(opt => opt.classList.remove('selected'));
+                // Add selected class to clicked option
+                option.classList.add('selected');
+                // Update hidden input
+                document.getElementById('difficulty-select').value = option.dataset.difficulty;
+                Sounds.click();
+            });
         });
 
         // Settings
@@ -36,6 +65,16 @@ const UI = {
         // Sound toggle
         document.getElementById('sound-toggle').addEventListener('change', () => {
             Sounds.toggle();
+        });
+
+        // Music toggle
+        document.getElementById('music-toggle').addEventListener('change', () => {
+            Sounds.toggleMusic();
+        });
+
+        // Music volume
+        document.getElementById('music-volume').addEventListener('input', (e) => {
+            Sounds.updateMusicVolume(parseFloat(e.target.value));
         });
     },
 
@@ -52,9 +91,43 @@ const UI = {
             header.style.display = 'block';
         }
 
+        // Adjust music intensity based on panel
+        if (panelId === 'start') {
+            Sounds.setMusicIntensity(0); // Calm welcome music
+        } else if (panelId === 'menu') {
+            Sounds.setMusicIntensity(0); // Menu music
+        } else if (panelId === 'game') {
+            Sounds.setMusicIntensity(1); // Gameplay music
+        }
+
         if (panelId === 'stats') this.updateStats();
         if (panelId === 'history') this.updateHistory();
         if (panelId === 'settings') this.loadSettings();
+        if (panelId === 'menu') this.initializeMenuSelections();
+    },
+
+    initializeMenuSelections: function() {
+        // Set default selections for mode and difficulty
+        const modeSelect = document.getElementById('mode-select');
+        const difficultySelect = document.getElementById('difficulty-select');
+
+        // Select the appropriate mode option
+        document.querySelectorAll('.mode-option').forEach(option => {
+            if (option.dataset.mode === modeSelect.value) {
+                option.classList.add('selected');
+            } else {
+                option.classList.remove('selected');
+            }
+        });
+
+        // Select the appropriate difficulty option
+        document.querySelectorAll('.difficulty-option').forEach(option => {
+            if (option.dataset.difficulty === difficultySelect.value) {
+                option.classList.add('selected');
+            } else {
+                option.classList.remove('selected');
+            }
+        });
     },
 
     updateStats: function() {
@@ -85,6 +158,8 @@ const UI = {
         document.getElementById('player-name').value = settings.playerName;
         document.getElementById('theme-select').value = settings.theme;
         document.getElementById('sound-toggle').checked = settings.soundEnabled;
+        document.getElementById('music-toggle').checked = settings.musicEnabled;
+        document.getElementById('music-volume').value = settings.musicVolume || 0.3;
         this.applyTheme(settings.theme);
     },
 
@@ -92,11 +167,15 @@ const UI = {
         const settings = {
             playerName: document.getElementById('player-name').value || 'Player',
             theme: document.getElementById('theme-select').value,
-            soundEnabled: document.getElementById('sound-toggle').checked
+            soundEnabled: document.getElementById('sound-toggle').checked,
+            musicEnabled: document.getElementById('music-toggle').checked,
+            musicVolume: parseFloat(document.getElementById('music-volume').value)
         };
         Storage.saveSettings(settings);
         this.applyTheme(settings.theme);
         Sounds.soundEnabled = settings.soundEnabled;
+        Sounds.musicEnabled = settings.musicEnabled;
+        Sounds.updateMusicVolume(settings.musicVolume);
         alert('Settings saved!');
     },
 
@@ -154,6 +233,11 @@ const UI = {
                 this.shakeScreen();
             }
         }, 1000);
+
+        // Reset music intensity after result animation
+        setTimeout(() => {
+            Sounds.setMusicIntensity(1); // Back to normal gameplay intensity
+        }, 3000);
     },
 
     hideResult: function() {

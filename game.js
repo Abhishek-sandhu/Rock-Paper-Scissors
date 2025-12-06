@@ -29,6 +29,9 @@ const Game = {
         this.setupMode();
         UI.updateChoices(this.choices);
         this.gameActive = true;
+        // Start background music when game begins
+        Sounds.startMusic();
+        Sounds.setMusicIntensity(1); // Gameplay intensity
     },
 
     setupMode: function() {
@@ -158,15 +161,20 @@ const Game = {
             outcomeText = 'You Win!';
             result = 'Win';
             Sounds.win();
+            Sounds.playVictoryMusic();
+            Sounds.setMusicIntensity(2); // Intense victory moment
         } else if (winner === 'computer') {
             this.computerScore++;
             outcomeText = 'You Lose!';
             result = 'Lose';
             Sounds.lose();
+            Sounds.playDefeatMusic();
+            Sounds.setMusicIntensity(2); // Intense defeat moment
         } else {
             outcomeText = 'Draw!';
             result = 'Draw';
             Sounds.draw();
+            Sounds.setMusicIntensity(1); // Back to normal gameplay
         }
 
         UI.updateScoreboard(this.playerScore, this.computerScore, this.roundNumber);
