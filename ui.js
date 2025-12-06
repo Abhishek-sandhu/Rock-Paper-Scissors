@@ -1,11 +1,11 @@
 // UI module
 const UI = {
-    currentPanel: 'game',
+    currentPanel: 'start',
 
     init: function() {
         this.bindEvents();
         this.loadSettings();
-        this.showPanel('menu');
+        this.showPanel('start');
     },
 
     bindEvents: function() {
@@ -14,6 +14,9 @@ const UI = {
         document.getElementById('stats-btn').addEventListener('click', () => this.showPanel('stats'));
         document.getElementById('history-btn').addEventListener('click', () => this.showPanel('history'));
         document.getElementById('settings-btn').addEventListener('click', () => this.showPanel('settings'));
+
+        // Let's Start button
+        document.getElementById('lets-start-btn').addEventListener('click', () => this.showPanel('menu'));
 
         // Start game
         document.getElementById('start-game-btn').addEventListener('click', () => {
@@ -40,6 +43,14 @@ const UI = {
         document.querySelectorAll('.panel').forEach(panel => panel.classList.remove('active'));
         document.getElementById(panelId).classList.add('active');
         this.currentPanel = panelId;
+
+        // Handle header visibility
+        const header = document.querySelector('header');
+        if (panelId === 'start') {
+            header.style.display = 'none';
+        } else {
+            header.style.display = 'block';
+        }
 
         if (panelId === 'stats') this.updateStats();
         if (panelId === 'history') this.updateHistory();
