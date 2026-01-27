@@ -1,8 +1,6 @@
 # 🎮 Rock Paper Scissors - Advanced Edition
 
-<p align="center">
-  <img src="https://via.placeholder.com/800x400/667eea/ffffff?text=🎮+Rock+Paper+Scissors" alt="Rock Paper Scissors Logo" width="80%">
-</p>
+
 
 [![GitHub stars](https://img.shields.io/github/stars/Abhishek-sandhu/Rock-Paper-Scissors.svg?style=for-the-badge)](https://github.com/Abhishek-sandhu/Rock-Paper-Scissors)
 [![GitHub license](https://img.shields.io/github/license/Abhishek-sandhu/Rock-Paper-Scissors.svg?style=for-the-badge)](https://github.com/Abhishek-sandhu/Rock-Paper-Scissors/blob/main/LICENSE)
