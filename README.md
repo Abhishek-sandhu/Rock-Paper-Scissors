@@ -12,9 +12,6 @@
 ### 🚀 **A modern, feature-rich Rock-Paper-Scissors game.**
 Crafted with **HTML**, **CSS**, and **JavaScript**, this game offers dazzling animations, multiple modes, AI difficulty levels, and detailed stats tracking.
 
-<p align="center">
-  <img src="https://via.placeholder.com/800x400/667eea/ffffff?text=Game+Preview" alt="Game Preview" width="80%">
-</p>
 
 ---
 
